@@ -34,6 +34,9 @@ class Ship(MovingObject):
     def kbin(self, event):
         if event.key == pygame.K_LEFT:
             self.angle -= 15
+            if self.angle <= -360:
+                self.angle = 0
         if event.key == pygame.K_RIGHT:
             self.angle += 15
-        print(self.angle)
+            if self.angle >= 360:
+                self.angle = 0
