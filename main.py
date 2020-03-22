@@ -1,5 +1,6 @@
 import pygame, os
 from Asteroid import Asteroid, Coord
+from Ship import Ship
 os.environ["SDL_VIDEO_WINDOW_POS"] = "15,30"
 
 pygame.display.init()
@@ -10,6 +11,7 @@ for i in range(10):
     asteroids.append(Asteroid(screen, size, 20))
     asteroids[i].randomPos()
     asteroids[i].randomVel()
+player = Ship(screen, size)
 running = True
 while running:
     for event in pygame.event.get():
@@ -19,5 +21,7 @@ while running:
     for asteroid in asteroids:
         asteroid.update()
         asteroid.draw()
+        player.update()
+        player.draw()
     pygame.display.update()
 
