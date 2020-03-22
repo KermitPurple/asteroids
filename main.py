@@ -6,7 +6,7 @@ pygame.display.init()
 size = Coord(600, 600)
 screen = pygame.display.set_mode(size)
 asteroids = []
-for i in range(2):
+for i in range(30):
     asteroids.append(Asteroid(screen, size, 20))
     asteroids[i].randomPos()
     asteroids[i].randomVel()
@@ -17,6 +17,7 @@ while running:
             running = False
     screen.fill((0,0,0))
     for asteroid in asteroids:
+        asteroid.update()
         asteroid.draw()
     pygame.display.update()
 
