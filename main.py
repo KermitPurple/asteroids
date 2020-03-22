@@ -12,11 +12,14 @@ for i in range(10):
     asteroids[i].randomPos()
     asteroids[i].randomVel()
 player = Ship(screen, size)
+pygame.key.set_repeat(80)
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            player.kbin(event)
     screen.fill((0,0,0))
     for asteroid in asteroids:
         asteroid.update()
