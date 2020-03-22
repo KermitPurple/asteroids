@@ -20,3 +20,6 @@ class Asteroid:
     def randomVel(self):
         theta = random() * 5
         self.vel = Coord(cos(theta), sin(theta))
+
+    def draw(self):
+        pygame.draw.circle(self.screen, (255,255,255), self.pos, self.r, 1)
