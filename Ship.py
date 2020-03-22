@@ -14,9 +14,11 @@ class Ship(MovingObject):
 
     def rads(self):
         return self.angle / 180 * pi
+    
+    def update(self):
+        MovingObject.update(self)
+        self.vel = Coord(0,0)
 
-    #qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
-    #qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
     def draw(self):
         points = [
             Coord(self.pos.x, self.pos.y - self.r),
@@ -31,12 +33,20 @@ class Ship(MovingObject):
             points[i] = new_point
         pygame.draw.polygon(self.screen, (255,255,255), points, 1)
 
-    def kbin(self, event):
-        if event.key == pygame.K_LEFT:
+    def kbin(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
             self.angle -= 15
             if self.angle <= -360:
                 self.angle = 0
-        if event.key == pygame.K_RIGHT:
+        if keys[pygame.K_RIGHT]:
             self.angle += 15
             if self.angle >= 360:
                 self.angle = 0
+        if keys[pygame.K_UP]:
+            self.move(Coord(10,-10))
+        if keys[pygame.K_DOWN]:
+            self.move(Coord(-10,10))
+
+    def move(self, v):
+        self.vel = Coord(self.vel.x + sin(self.rads()) * v.x, self.vel.y + cos(self.rads()) * v.y)

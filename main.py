@@ -19,7 +19,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            player.kbin(event)
+            player.kbin()
     screen.fill((0,0,0))
     for asteroid in asteroids:
         asteroid.update()

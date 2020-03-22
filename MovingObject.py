@@ -23,14 +23,23 @@ class MovingObject:
     def posInt(self):
         return Coord(int(self.pos.x), int(self.pos.y))
 
-    def update(self):
+    def update(self, repeat = True):
         pos = Coord(self.pos.x + self.vel.x, self.pos.y + self.vel.y)
         if pos.x - self.r > self.size.x:
-            pos = Coord(-self.r, pos.y)
+            if repeat:
+                pos = Coord(-self.r, pos.y)
+            return False
         if pos.x + self.r < 0:
-            pos = Coord(self.size.x + self.r, pos.y)
+            if repeat:
+                pos = Coord(self.size.x + self.r, pos.y)
+            return False
         if pos.y -self.r > self.size.y:
-            pos = Coord(pos.x, -self.r)
+            if repeat:
+                pos = Coord(pos.x, -self.r)
+            return False
         if pos.y + self.r< 0:
-            pos = Coord(pos.x, self.size.y + self.r)
+            if repeat:
+                pos = Coord(pos.x, self.size.y + self.r)
+            return False
         self.pos = pos
+        return True
