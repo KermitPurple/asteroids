@@ -60,8 +60,8 @@ class Ship(MovingObject):
     def fireBullet(self):
         speed = 2
         v = Coord(
-                self.vel.x + sin(self.rads()) * speed,
-                self.vel.y + cos(self.rads()) * -speed
+                sin(self.rads()) * speed,
+                cos(self.rads()) * -speed
                 )
         return Bullet(self.screen, self.size, self.pos, v) 
 
