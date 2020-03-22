@@ -28,18 +28,22 @@ class MovingObject:
         if pos.x - self.r > self.size.x:
             if repeat:
                 pos = Coord(-self.r, pos.y)
-            return False
+            else:
+                return False
         if pos.x + self.r < 0:
             if repeat:
                 pos = Coord(self.size.x + self.r, pos.y)
-            return False
+            else:
+                return False
         if pos.y -self.r > self.size.y:
             if repeat:
                 pos = Coord(pos.x, -self.r)
-            return False
+            else:
+                return False
         if pos.y + self.r< 0:
             if repeat:
                 pos = Coord(pos.x, self.size.y + self.r)
-            return False
+            else:
+                return False
         self.pos = pos
         return True

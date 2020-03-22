@@ -1,6 +1,7 @@
 import pygame
 from numpy import sin, cos, pi
 from Asteroid import Coord, Asteroid
+from Bullet import Bullet
 from MovingObject import MovingObject, Coord
 
 class Ship(MovingObject):
@@ -33,7 +34,7 @@ class Ship(MovingObject):
             points[i] = new_point
         pygame.draw.polygon(self.screen, (255,255,255), points, 1)
 
-    def kbin(self):
+    def kbin(self, bullets):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             self.angle -= 15
@@ -47,6 +48,20 @@ class Ship(MovingObject):
             self.move(Coord(10,-10))
         if keys[pygame.K_DOWN]:
             self.move(Coord(-10,10))
+        if keys[pygame.K_SPACE]:
+            bullets.append(self.fireBullet())
 
     def move(self, v):
-        self.vel = Coord(self.vel.x + sin(self.rads()) * v.x, self.vel.y + cos(self.rads()) * v.y)
+        self.vel = Coord(
+                self.vel.x + sin(self.rads()) * v.x, 
+                self.vel.y + cos(self.rads()) * v.y
+                )
+
+    def fireBullet(self):
+        speed = 2
+        v = Coord(
+                self.vel.x + sin(self.rads()) * speed,
+                self.vel.y + cos(self.rads()) * -speed
+                )
+        return Bullet(self.screen, self.size, self.pos, v) 
+
