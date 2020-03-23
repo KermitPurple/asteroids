@@ -16,8 +16,8 @@ screen = pygame.display.set_mode(size)
 tiks = 0
 asteroids = []
 bullets = []
-for i in range(1):
-    asteroids.append(Asteroid(screen, size, 20))
+for i in range(10):
+    asteroids.append(Asteroid(screen, size, 50))
     asteroids[i].randomPos()
     asteroids[i].randomVel()
 player = Ship(screen, size)
@@ -29,9 +29,8 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.unicode == "e":
-                new_list = list(asteroids)
-                for asteroid in new_list:
-                    asteroid.explode(asteroids)
+                for asteroid in asteroids:
+                    asteroid.dead = True
     if tiks % 40 == 0:
         player.kbin(bullets)
     screen.fill((0,0,0))
@@ -44,6 +43,7 @@ while running:
     for i, bullet in enumerate(bullets):
         bullet.update()
         bullet.draw()
+        bullet.collide(asteroids)
         if bullet.dead:
             _ = bullets.pop(i)
     player.update()

@@ -13,10 +13,11 @@ class Asteroid(MovingObject):
         pygame.draw.circle(self.screen, (255,255,255), self.posInt(), self.r, 1)
 
     def explode(self, asteroids):
-        if self.r/2 > 4:
+        if self.r/2 > 10:
             p1 = self.pos
             v1 = Coord(self.vel.y, self.vel.x)
-            asteroids.append(Asteroid(self.screen, self.size, int(self.r/2), p1, v1))
+            asteroids.append(Asteroid(self.screen, self.size, int(self.r*2/3), p1, v1))
             p2 = self.pos
             v2 = Coord(-self.vel.y, -self.vel.x)
-            asteroids.append(Asteroid(self.screen, self.size, int(self.r/2), p2, v2))
+            asteroids.append(Asteroid(self.screen, self.size, int(self.r*2/3), p2, v2))
+            self.dead = True
