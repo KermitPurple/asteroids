@@ -27,7 +27,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    if tiks % 80 == 0:
+    if tiks % 40 == 0:
         player.kbin(bullets)
     screen.fill((0,0,0))
     for asteroid in asteroids:
