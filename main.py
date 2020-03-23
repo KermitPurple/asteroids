@@ -31,7 +31,7 @@ while running:
             if event.unicode == "e":
                 for asteroid in asteroids:
                     asteroid.dead = True
-    if tiks % 40 == 0:
+    if tiks % 20 == 0:
         player.kbin(bullets)
     screen.fill((0,0,0))
     for i, asteroid in enumerate(asteroids):

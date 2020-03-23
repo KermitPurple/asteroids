@@ -12,6 +12,7 @@ class Ship(MovingObject):
         MovingObject.__init__(self, screen, size, pos, vel)
         self.angle = 0
         self.r = 20
+        self.bulletcooldown = 0
 
     def rads(self):
         return self.angle / 180 * pi
@@ -49,7 +50,12 @@ class Ship(MovingObject):
         if keys[pygame.K_DOWN]:
             self.move(Coord(-10,10))
         if keys[pygame.K_SPACE]:
-            bullets.append(self.fireBullet())
+            if self.bulletcooldown == 0:
+                bullets.append(self.fireBullet())
+                self.bulletcooldown += 20
+        self.bulletcooldown -= 1
+        if self.bulletcooldown < 0:
+            self.bulletcooldown = 0
 
     def move(self, v):
         self.vel = Coord(
