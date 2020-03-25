@@ -13,6 +13,7 @@ class Ship(MovingObject):
         self.angle = 0
         self.r = 20
         self.bulletcooldown = 0
+        self.dead = False
 
     def rads(self):
         return self.angle / 180 * pi
@@ -71,3 +72,7 @@ class Ship(MovingObject):
                 )
         return Bullet(self.screen, self.size, self.pos, v) 
 
+    def collide(self, asteroids):
+        for asteroid in asteroids:
+            if self.pos.x + self.r/2 > asteroid.pos.x - asteroid.r and self.pos.x - self.r/2 < asteroid.pos.x + asteroid.r and self.pos.y + self.r/2 > asteroid.pos.y - asteroid.r and self.pos.y - self.r/2 < asteroid.pos.y + asteroid.r:
+                self.dead = True

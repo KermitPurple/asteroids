@@ -16,7 +16,7 @@ screen = pygame.display.set_mode(size)
 tiks = 0
 asteroids = []
 bullets = []
-for i in range(10):
+for i in range(1):
     asteroids.append(Asteroid(screen, size, 50))
     asteroids[i].randomPos()
     asteroids[i].randomVel()
@@ -48,5 +48,8 @@ while running:
             _ = bullets.pop(i)
     player.update()
     player.draw()
+    player.collide(asteroids)
+    if player.dead:
+        running = False
     pygame.display.update()
     tik()
