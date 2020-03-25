@@ -14,13 +14,19 @@ pygame.display.init()
 size = Coord(600, 600)
 screen = pygame.display.set_mode(size)
 tiks = 0
+player = Ship(screen, size)
 asteroids = []
 bullets = []
-for i in range(1):
+for i in range(10):
     asteroids.append(Asteroid(screen, size, 50))
-    asteroids[i].randomPos()
-    asteroids[i].randomVel()
-player = Ship(screen, size)
+    while True:
+        asteroids[i].randomPos()
+        asteroids[i].randomVel()
+        player.collide([asteroids[i]])
+        if not player.dead:
+            break
+        else:
+            player.dead = False
 pygame.key.set_repeat(80)
 running = True
 while running:
