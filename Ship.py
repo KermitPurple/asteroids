@@ -53,7 +53,7 @@ class Ship(MovingObject):
         if keys[pygame.K_SPACE]:
             if self.bulletcooldown == 0:
                 bullets.append(self.fireBullet())
-                self.bulletcooldown += 20
+                self.bulletcooldown += 10
         self.bulletcooldown -= 1
         if self.bulletcooldown < 0:
             self.bulletcooldown = 0
