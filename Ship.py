@@ -20,7 +20,6 @@ class Ship(MovingObject):
     
     def update(self):
         MovingObject.update(self)
-        self.vel = Coord(0,0)
 
     def draw(self):
         points = [
@@ -47,9 +46,9 @@ class Ship(MovingObject):
             if self.angle >= 360:
                 self.angle = 0
         if keys[pygame.K_UP]:
-            self.move(Coord(10,-10))
+            self.move(Coord(0.05,-0.05))
         if keys[pygame.K_DOWN]:
-            self.move(Coord(-10,10))
+            self.move(Coord(-0.05,0.05))
         if keys[pygame.K_SPACE]:
             if self.bulletcooldown == 0:
                 bullets.append(self.fireBullet())
