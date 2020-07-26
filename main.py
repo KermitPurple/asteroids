@@ -11,7 +11,7 @@ def tik():
         tiks = 0
 
 pygame.display.init()
-size = Coord(600, 600)
+size = Coord(900, 600)
 screen = pygame.display.set_mode(size)
 tiks = 0
 player = Ship(screen, size)
